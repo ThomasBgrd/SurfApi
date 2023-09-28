@@ -167,70 +167,70 @@ namespace SurfAPI
         ulong ulSize;           // size of the structure
 
 
-        DSSTUDIABLE Type;               // studiable type
+        public DSSTUDIABLE nType;               // studiable type
 
         public char[] strName;              // name of the studiable
 
         public char[] strOperatorName;      // name of the operator who
                                        // measured the studiable
 
-        short nAcquisitionType;         // which kind of sensor has been used
+        public short nAcquisitionType;         // which kind of sensor has been used
                                         // for the measure
 
-        short nTracking;                // 0: normal tracking
+        public short nTracking;                // 0: normal tracking
                                         // 1: extended tracking
 
-        short nSpecialPoints;           // 0: normal
+        public short nSpecialPoints;           // 0: normal
                                         // 1: non-measured points
 
-        bool bAbsolute;                // FALSE: relatives values
+        public bool bAbsolute;                // FALSE: relatives values
                                        // TRUE: absolutes values
 
-        float fGaugeResolution;         // 0: resolution not set
+        public float fGaugeResolution;         // 0: resolution not set
 
-        long nZMin;                    // min (resampled) value
-        long nZMax;                    // max (resampled) value
+        public long nZMin;                    // min (resampled) value
+        public long nZMax;                    // max (resampled) value
 
-        long nXCount;                  // number of points by column
-        long nYCount;                  // number of points by row
-        long nWCount;                  // number of points by depth (for hyperpectral measurements)
+        public long nXCount;                  // number of points by column
+        public long nYCount;                  // number of points by row
+        public long nWCount;                  // number of points by depth (for hyperpectral measurements)
 
-        float fXStep;                   // step
-        float fYStep;                   // step
-        float fZStep;                   // step
+        public float fXStep;                   // step
+        public float fYStep;                   // step
+        public float fZStep;                   // step
 
-        float fXOffset;                 // offset
-        float fYOffset;                 // offset
-        float fZOffset;                 // offset
+        public float fXOffset;                 // offset
+        public float fYOffset;                 // offset
+        public float fZOffset;                 // offset
 
         public char[] strXAxisName;         // name of the X axis
         public char[] strYAxisName;         // name of the Y axis
         public char[] strZAxisName;         // name of the Z axis
 
-        TUNIT tXAxisUnit;               // X axis unit
-        TUNIT tYAxisUnit;               // Y axis unit
-        TUNIT tZAxisUnit;               // Z axis unit
+        public TUNIT tXAxisUnit;               // X axis unit
+        public TUNIT tYAxisUnit;               // Y axis unit
+        public TUNIT tZAxisUnit;               // Z axis unit
 
         public char[] strXAxisUnknownUnit;  // if unknown X unit, unit is present in this field
         public char[] strYAxisUnknownUnit;  // if unknown Y unit, unit is present in this field
         public char[] strZAxisUnknownUnit;  // if unknown Z unit, unit is present in this field
 
-        bool bInverted;                // are the values inverted ?
+        public bool bInverted;                // are the values inverted ?
 
-        short nRectified;               //
+        public short nRectified;               //
 
 
-        short nSecond;                  // date-time of the measure
-        short nMinute;
-        short nHour;
-        short nDay;
-        short nMonth;
-        short nYear;
-        float fMeasureLength;           // length (in seconds) of the measure
+        public short nSecond;                  // date-time of the measure
+        public short nMinute;
+        public short nHour;
+        public short nDay;
+        public short nMonth;
+        public short nYear;
+        public float fMeasureLength;           // length (in seconds) of the measure
 
         public char[] ClientInfo;          // client informations
 
-        short nCommentSize;             // size in bytes of the comment
+        public short nCommentSize;             // size in bytes of the comment
 
         // *** T Axis ******************
         // *** only used with series ***
@@ -317,7 +317,7 @@ namespace SurfAPI
 
                 // Initialise the object header
                 TSurfObjectInfos Infos;
-                nResult = dsReadObjectInfosWithoutStruct(hFile, i, Infos.nType, Infos.strName(0), Infos.strOperatorName(0), Infos.nAcquisitionType, Infos.nTracking, Infos.nSpecialPoints, Infos.bAbsolute, Infos.fGaugeResolution, Infos.nZMin, Infos.nZMax, Infos.nXCount, Infos.nYCount, Infos.fXStep, Infos.fYStep, Infos.fZStep, Infos.fXOffset, Infos.fYOffset, Infos.fZOffset, Infos.strXAxisName(0), Infos.strYAxisName(0), Infos.strZAxisName(0), Infos.tXAxisUnit, Infos.tYAxisUnit, Infos.tZAxisUnit, Infos.bInverted, Infos.nRectified, Infos.nSecond, Infos.nMinute, Infos.nHour, Infos.nDay, Infos.nMonth, Infos.nYear, Infos.fMeasureLength, Infos.ClientInfo(0), Infos.nCommentSize);
+                nResult = dsReadObjectInfosWithoutStruct(hFile, i, Infos.nType, Infos.strName[0], Infos.strOperatorName[0], Infos.nAcquisitionType, Infos.nTracking, Infos.nSpecialPoints, Infos.bAbsolute, Infos.fGaugeResolution, Infos.nZMin, Infos.nZMax, Infos.nXCount, Infos.nYCount, Infos.fXStep, Infos.fYStep, Infos.fZStep, Infos.fXOffset, Infos.fYOffset, Infos.fZOffset, Infos.strXAxisName[0], Infos.strYAxisName[0], Infos.strZAxisName[0], Infos.tXAxisUnit, Infos.tYAxisUnit, Infos.tZAxisUnit, Infos.bInverted, Infos.nRectified, Infos.nSecond, Infos.nMinute, Infos.nHour, Infos.nDay, Infos.nMonth, Infos.nYear, Infos.fMeasureLength, Infos.ClientInfo[0], Infos.nCommentSize);
                 // Reading the information concerning the object
 
 
@@ -342,7 +342,7 @@ namespace SurfAPI
 
         private bool SaveSurface(string strFileNameOut)
         {
-            bool result = false;
+            bool result;
             DSSTUDIABLE nStudiableType = DSSTUDIABLE.kdsSurface;
             int nObjectCount = 3;
             DSRESULT nResult; // return code
