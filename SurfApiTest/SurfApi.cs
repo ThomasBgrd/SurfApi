@@ -169,9 +169,9 @@ namespace SurfAPI
 
         DSSTUDIABLE Type;               // studiable type
 
-        char strName[31];              // name of the studiable
+        public char[] strName;              // name of the studiable
 
-        char strOperatorName[31];      // name of the operator who
+        public char[] strOperatorName;      // name of the operator who
                                        // measured the studiable
 
         short nAcquisitionType;         // which kind of sensor has been used
@@ -228,7 +228,7 @@ namespace SurfAPI
         short nYear;
         float fMeasureLength;           // length (in seconds) of the measure
 
-        char ClientInfo[128];          // client informations
+        public char[] ClientInfo;          // client informations
 
         short nCommentSize;             // size in bytes of the comment
 
@@ -274,6 +274,10 @@ namespace SurfAPI
         public SurfApi()
         {
             TSurfObjectInfos tSurfObjectInfos;
+
+            tSurfObjectInfos.strName = new char[31];
+            tSurfObjectInfos.strOperatorName = new char[31];
+
             tSurfObjectInfos.strXAxisName = new char[17];
             tSurfObjectInfos.strYAxisName = new char[17];
             tSurfObjectInfos.strZAxisName = new char[17];
@@ -281,6 +285,8 @@ namespace SurfAPI
             tSurfObjectInfos.strXAxisUnknownUnit = new char[17];
             tSurfObjectInfos.strYAxisUnknownUnit = new char[17];
             tSurfObjectInfos.strZAxisUnknownUnit = new char[17];
+
+            tSurfObjectInfos.ClientInfo = new char[128];
 
             tSurfObjectInfos.strTAxisUnknownUnit = new char[14];
             tSurfObjectInfos.strTAxisName = new char[14];
