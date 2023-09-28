@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 using System.Runtime.Remoting;
 using System.Text;
 
-namespace SurfAPI
+namespace SurfApiTest
 {
     enum DSSTUDIABLE
     {
@@ -169,12 +169,12 @@ namespace SurfAPI
 
         public DSSTUDIABLE nType;               // studiable type
 
-        public char[] strName;              // name of the studiable
+        public byte[] strName;              // name of the studiable
 
-        public char[] strOperatorName;      // name of the operator who
+        public byte[] strOperatorName;      // name of the operator who
                                        // measured the studiable
 
-        public short nAcquisitionType;         // which kind of sensor has been used
+        public int nAcquisitionType;         // which kind of sensor has been used
                                         // for the measure
 
         public short nTracking;                // 0: normal tracking
@@ -203,17 +203,17 @@ namespace SurfAPI
         public float fYOffset;                 // offset
         public float fZOffset;                 // offset
 
-        public char[] strXAxisName;         // name of the X axis
-        public char[] strYAxisName;         // name of the Y axis
-        public char[] strZAxisName;         // name of the Z axis
+        public byte[] strXAxisName;         // name of the X axis
+        public byte[] strYAxisName;         // name of the Y axis
+        public byte[] strZAxisName;         // name of the Z axis
 
         public TUNIT tXAxisUnit;               // X axis unit
         public TUNIT tYAxisUnit;               // Y axis unit
         public TUNIT tZAxisUnit;               // Z axis unit
 
-        public char[] strXAxisUnknownUnit;  // if unknown X unit, unit is present in this field
-        public char[] strYAxisUnknownUnit;  // if unknown Y unit, unit is present in this field
-        public char[] strZAxisUnknownUnit;  // if unknown Z unit, unit is present in this field
+        public byte[] strXAxisUnknownUnit;  // if unknown X unit, unit is present in this field
+        public byte[] strYAxisUnknownUnit;  // if unknown Y unit, unit is present in this field
+        public byte[] strZAxisUnknownUnit;  // if unknown Z unit, unit is present in this field
 
         public bool bInverted;                // are the values inverted ?
 
@@ -228,7 +228,7 @@ namespace SurfAPI
         public short nYear;
         public float fMeasureLength;           // length (in seconds) of the measure
 
-        public char[] ClientInfo;          // client informations
+        public byte[] ClientInfo;          // client informations
 
         public short nCommentSize;             // size in bytes of the comment
 
@@ -238,8 +238,8 @@ namespace SurfAPI
         float fTStep;                   // step
         float fTOffset;                 // offset
         TUNIT tTAxisUnit;               // T axis unit
-        public char[] strTAxisUnknownUnit;  // if unknown T unit, unit is present in this field
-        public char[] strTAxisName;         // name of the T axis
+        public byte[] strTAxisUnknownUnit;  // if unknown T unit, unit is present in this field
+        public byte[] strTAxisName;         // name of the T axis
 
         // *** T Axis ******************
     }
@@ -275,21 +275,21 @@ namespace SurfAPI
         {
             TSurfObjectInfos tSurfObjectInfos;
 
-            tSurfObjectInfos.strName = new char[31];
-            tSurfObjectInfos.strOperatorName = new char[31];
+            tSurfObjectInfos.strName = new byte[31];
+            tSurfObjectInfos.strOperatorName = new byte[31];
 
-            tSurfObjectInfos.strXAxisName = new char[17];
-            tSurfObjectInfos.strYAxisName = new char[17];
-            tSurfObjectInfos.strZAxisName = new char[17];
+            tSurfObjectInfos.strXAxisName = new byte[17];
+            tSurfObjectInfos.strYAxisName = new byte[17];
+            tSurfObjectInfos.strZAxisName = new byte[17];
 
-            tSurfObjectInfos.strXAxisUnknownUnit = new char[17];
-            tSurfObjectInfos.strYAxisUnknownUnit = new char[17];
-            tSurfObjectInfos.strZAxisUnknownUnit = new char[17];
+            tSurfObjectInfos.strXAxisUnknownUnit = new byte[17];
+            tSurfObjectInfos.strYAxisUnknownUnit = new byte[17];
+            tSurfObjectInfos.strZAxisUnknownUnit = new byte[17];
 
-            tSurfObjectInfos.ClientInfo = new char[128];
+            tSurfObjectInfos.ClientInfo = new byte[128];
 
-            tSurfObjectInfos.strTAxisUnknownUnit = new char[14];
-            tSurfObjectInfos.strTAxisName = new char[14];
+            tSurfObjectInfos.strTAxisUnknownUnit = new byte[14];
+            tSurfObjectInfos.strTAxisName = new byte[14];
         }
 
         private bool DisplaySurf(string strSurfFile, string strFileNameOut)
@@ -317,7 +317,7 @@ namespace SurfAPI
 
                 // Initialise the object header
                 TSurfObjectInfos Infos;
-                nResult = dsReadObjectInfosWithoutStruct(hFile, i, Infos.nType, Infos.strName[0], Infos.strOperatorName[0], Infos.nAcquisitionType, Infos.nTracking, Infos.nSpecialPoints, Infos.bAbsolute, Infos.fGaugeResolution, Infos.nZMin, Infos.nZMax, Infos.nXCount, Infos.nYCount, Infos.fXStep, Infos.fYStep, Infos.fZStep, Infos.fXOffset, Infos.fYOffset, Infos.fZOffset, Infos.strXAxisName[0], Infos.strYAxisName[0], Infos.strZAxisName[0], Infos.tXAxisUnit, Infos.tYAxisUnit, Infos.tZAxisUnit, Infos.bInverted, Infos.nRectified, Infos.nSecond, Infos.nMinute, Infos.nHour, Infos.nDay, Infos.nMonth, Infos.nYear, Infos.fMeasureLength, Infos.ClientInfo[0], Infos.nCommentSize);
+                //nResult = dsReadObjectInfosWithoutStruct(hFile, i, ref Infos.nType, ref Infos.strName[0], ref Infos.strOperatorName[0], ref Infos.nAcquisitionType, Infos.nTracking, Infos.nSpecialPoints, Infos.bAbsolute, Infos.fGaugeResolution, Infos.nZMin, Infos.nZMax, Infos.nXCount, Infos.nYCount, Infos.fXStep, Infos.fYStep, Infos.fZStep, Infos.fXOffset, Infos.fYOffset, Infos.fZOffset, Infos.strXAxisName[0], Infos.strYAxisName[0], Infos.strZAxisName[0], Infos.tXAxisUnit, Infos.tYAxisUnit, Infos.tZAxisUnit, Infos.bInverted, Infos.nRectified, Infos.nSecond, Infos.nMinute, Infos.nHour, Infos.nDay, Infos.nMonth, Infos.nYear, Infos.fMeasureLength, Infos.ClientInfo[0], Infos.nCommentSize);
                 // Reading the information concerning the object
 
 
@@ -340,18 +340,13 @@ namespace SurfAPI
             return result;
         }
 
-        private bool SaveSurface(string strFileNameOut)
+        public bool SaveSurface(string strFileNameOut)
         {
             bool result;
-            DSSTUDIABLE nStudiableType = DSSTUDIABLE.kdsSurface;
-            int nObjectCount = 3;
-            DSRESULT nResult; // return code
+            int nObjectCount = 1;
+            DSRESULT nResult = DSRESULT.kdsOK; // return code
             long hFile; // file handle
             hFile = 0L;
-            byte[] byteFileName = Encoding.ASCII.GetBytes(strFileNameOut);
-
-            // We try to open the file
-            nResult = dsOpenStudiable(ref byteFileName[0], DSFILEFLAGS.kdsReadFile, ref nStudiableType, ref nObjectCount, ref hFile);
 
             // Verify the success of the operation
             if (DSRESULT.kdsOK != nResult)
@@ -364,7 +359,19 @@ namespace SurfAPI
             {
                 TSurfObjectInfos Infos;
                 Infos.nXCount = 10;
+                Infos.tXAxisUnit = TUNIT.kUnit_mm;
+                Infos.fXStep = 0;
+                Infos.fXOffset = 0;
+
                 Infos.nYCount = 10;
+                Infos.tYAxisUnit = TUNIT.kUnit_mm;
+                Infos.fYStep = 0;
+                Infos.fYOffset = 0;
+
+                Infos.tZAxisUnit = TUNIT.kUnit_mm;
+                Infos.fZStep = 0;
+                Infos.fZOffset = 0;
+
                 long[] pBuffer;
                 pBuffer = new long[(Infos.nXCount * Infos.nYCount)];
 
